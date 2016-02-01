@@ -1,0 +1,11 @@
+d5764a936a52ddab6e7858a77e578e6f *DESCRIPTION
+e45afa9fd47db4116dddeea3e6ddb8c6 *NAMESPACE
+dc4cefe7931050a7176f173608910427 *R/procs.R
+24c2f6a25f3c3e83b5495918ebe2d76f *README.md
+acf1f0ae3d5629b5eb80c25821b0dd1d *data/inflation_mean.RData
+d16ae11128cad33443a1b706cece441f *data/recession_probability.RData
+1cba796e1276698e5acf16e2b78469b3 *man/datasets.Rd
+1b0c8544c456e4dda73b0a418d01312d *man/diagram.Rd
+d685c9731863088e4d9a4f5646d79619 *man/example.Rd
+e7fd69c222aff42290c716c69c400da8 *man/fluctuation.Rd
+dcd729e3581a267ff9cb0c612ef2d028 *man/scores.Rd
