@@ -1,3 +1,7 @@
+#' @importFrom stats dnorm lm optimize pnorm qnorm sd
+#' @importFrom graphics abline axis legend lines matplot plot polygon
+#' @export murphydiagram murphydiagram_diff expected_score_mean expected_score_quantile fluctuation_test extremal_score apl_score ase_score
+
 # Input checker needed below
 input.check <- function(f, y, t, alpha){
   if ( (length(t) > 1) | (length(alpha) > 1) | (length(f) != length(y)) | any(c(!is.vector(f), !is.vector(y), !is.vector(t), !is.vector(alpha))) ) stop("invalid input") 
@@ -174,8 +178,11 @@ murphydiagram_diff <- function(f1, f2, y, functional = "expectile", alpha = 0.5,
     df[j, 2:3] <- c(mean(aux1), mean(aux2))
     aux.v <- try(vHAC(aux1 - aux2, k = lag_truncate, meth = "bartlett")$hac/nobs)
     # HAC estimator won't invert for some t in the tails -> Set variance to zero in these cases
-    if (class(aux.v) == "try-error") aux.v <- 0
-    df[j, 4:5] <- mean(aux1-aux2) + c(-1, 1)*scl*sqrt(aux.v)
+    if (inherits(aux.v, "try-error")){
+      aux.v <- 0  
+    } 
+    aux.m <- mean(aux1-aux2)
+    df[j, 4:5] <- c(aux.m - scl*sqrt(aux.v), aux.m + scl*sqrt(aux.v))
   }
     
   # Plot: Score difference + confidence interval
@@ -434,5 +441,3 @@ ase_score <- function(x, y, alpha = 0.5){
   out[!ind] <- alpha * (out[!ind]^2)
   out
 }
-
-
